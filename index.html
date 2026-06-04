@@ -9,7 +9,6 @@
 <style>
   :root {
     --fire: #e8430a;
-    --ember: #c93b08;
     --gold: #f5a623;
     --smoke: #1a1410;
     --ash: #2d2520;
@@ -18,38 +17,26 @@
     --sand: #e8d5bc;
     --muted: #7a6a5a;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Barlow', sans-serif;
-    background-color: var(--smoke);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  body { font-family: 'Barlow', sans-serif; background-color: var(--smoke); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
 
   /* ── HEADER ── */
   header {
     position: relative;
     background: linear-gradient(160deg, #1a1410 0%, #2d1a0a 50%, #1a1410 100%);
-    padding: 48px 24px 40px;
-    text-align: center;
-    overflow: hidden;
+    padding: 48px 24px 32px;
+    text-align: center; overflow: hidden;
     border-bottom: 3px solid var(--fire);
   }
   header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 80% 60% at 50% 120%, rgba(232,67,10,0.25) 0%, transparent 70%),
       radial-gradient(ellipse 40% 40% at 20% -10%, rgba(245,166,35,0.1) 0%, transparent 60%);
     pointer-events: none;
   }
   .header-logo {
-    width: 130px; height: 130px;
-    object-fit: contain; border-radius: 50%;
+    width: 130px; height: 130px; object-fit: contain; border-radius: 50%;
     margin-bottom: 18px; position: relative; z-index: 1;
     filter: drop-shadow(0 0 24px rgba(232,67,10,0.4));
   }
@@ -62,58 +49,48 @@
   }
   header h1 span { color: var(--gold); }
   header p.tagline {
-    margin-top: 12px;
+    margin-top: 10px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--sand); opacity: .8;
-    position: relative; z-index: 1;
+    font-size: 1rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sand); opacity: .8; position: relative; z-index: 1;
   }
+  .header-address {
+    margin-top: 14px; position: relative; z-index: 1;
+    font-size: .82rem; color: var(--muted);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .header-address i { color: var(--fire); font-size: .9rem; }
 
   /* ── MAIN ── */
   main { max-width: 900px; margin: 0 auto; padding: 40px 20px 120px; }
 
-  /* ── ORDER TYPE PICKER ── */
+  /* ── ORDER TYPE ── */
   .order-type-block {
-    background: var(--ash);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 28px 24px;
-    margin-bottom: 40px;
+    background: var(--ash); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 28px 24px; margin-bottom: 40px;
   }
-  .order-type-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--cream);
-    margin-bottom: 16px;
-  }
+  .order-type-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 16px; }
   .order-type-options { display: flex; gap: 14px; }
   .ot-btn {
-    flex: 1; border: 1.5px solid var(--charcoal);
-    border-radius: 12px; padding: 18px 12px;
-    cursor: pointer; text-align: center;
-    background: transparent; color: var(--sand);
-    font-family: 'Barlow', sans-serif; font-size: .95rem;
-    transition: all .2s;
+    flex: 1; border: 1.5px solid var(--charcoal); border-radius: 12px; padding: 18px 12px;
+    cursor: pointer; text-align: center; background: transparent; color: var(--sand);
+    font-family: 'Barlow', sans-serif; font-size: .95rem; transition: all .2s;
   }
   .ot-btn:hover { border-color: var(--fire); }
-  .ot-btn.selected {
-    border-color: var(--fire);
-    background: rgba(232,67,10,0.1);
-    color: var(--cream);
-  }
-  .ot-btn .ot-icon {
-    font-size: 1.8rem; display: block; margin-bottom: 6px;
-    color: var(--fire);
-  }
+  .ot-btn.selected { border-color: var(--fire); background: rgba(232,67,10,0.1); color: var(--cream); }
+  .ot-btn .ot-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; color: var(--fire); }
   .ot-btn .ot-label { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 1px; }
   .ot-btn .ot-sub { font-size: .78rem; color: var(--muted); margin-top: 3px; }
 
   /* ── SECTION HEADERS ── */
   .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; letter-spacing: 5px; text-transform: uppercase;
-    color: var(--fire); margin-bottom: 16px;
-    padding-left: 14px; border-left: 3px solid var(--fire);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+    letter-spacing: 5px; text-transform: uppercase; color: var(--fire);
+    margin-bottom: 16px; padding-left: 14px; border-left: 3px solid var(--fire);
+  }
+  .section-note {
+    font-size: .8rem; color: var(--muted); margin-bottom: 14px;
+    padding-left: 14px; font-style: italic;
   }
   .category { margin-bottom: 48px; }
 
@@ -145,26 +122,21 @@
   .qty-btn:hover { background: var(--fire); color: white; }
   .qty-num { min-width: 24px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--cream); }
 
-  /* ── TACO EXTRAS ── */
-  .taco-extras { margin-top: 6px; display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted); }
-  .taco-cheese-btn {
+  /* ── TOGGLE BUTTONS (shared style for taco cheese, qv, burger, papa topping) ── */
+  .toggle-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .toggle-chip {
+    flex: 1; min-width: 80px;
     background: transparent; border: 1px solid var(--charcoal);
-    border-radius: 6px; color: var(--sand); font-size: .75rem;
-    padding: 2px 8px; cursor: pointer; font-family: 'Barlow', sans-serif; transition: all .15s;
-  }
-  .taco-cheese-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,0.08); }
-
-  /* ── QV TOGGLE ── */
-  .qv-toggle { display: flex; gap: 6px; margin-top: 8px; }
-  .qv-btn {
-    flex: 1; background: transparent; border: 1px solid var(--charcoal);
     border-radius: 6px; color: var(--sand); font-size: .75rem;
     padding: 4px 6px; cursor: pointer; font-family: 'Barlow', sans-serif;
     transition: all .15s; text-align: center;
   }
-  .qv-btn.active { border-color: var(--fire); color: var(--fire); background: rgba(232,67,10,0.08); }
+  .toggle-chip:hover { border-color: var(--muted); }
+  .toggle-chip.active { border-color: var(--fire); color: var(--fire); background: rgba(232,67,10,0.08); }
+  .toggle-chip.active-gold { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,0.08); }
+  .toggle-label { font-size: .78rem; color: var(--muted); margin-top: 8px; }
 
-  /* ── SUMMARY BLOCK ── */
+  /* ── SUMMARY ── */
   .summary-block {
     background: var(--ash); border: 1px solid rgba(255,255,255,0.08);
     border-radius: 16px; padding: 28px 24px; margin-top: 48px;
@@ -175,37 +147,50 @@
   .summary-item-name { flex: 1; padding-right: 12px; }
   .summary-item-price { color: var(--gold); font-weight: 600; white-space: nowrap; }
   .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
-  .total-row { display: flex; justify-content: space-between; align-items: baseline; }
+
+  .subtotal-section { display: flex; flex-direction: column; gap: 6px; }
+  .subtotal-row { display: flex; justify-content: space-between; font-size: .88rem; color: var(--muted); }
+  .subtotal-row.envio { color: var(--sand); }
+  .total-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; }
   .total-label { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
   .total-label small { display: block; font-size: .7rem; opacity: .7; margin-top: 2px; text-transform: none; letter-spacing: 0; }
   .total-amount { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
 
   /* ── DELIVERY FORM ── */
   .delivery-section { margin-top: 28px; }
-  .delivery-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 3px; text-transform: uppercase;
-    font-size: .85rem; color: var(--muted); margin-bottom: 14px;
-  }
+  .delivery-title { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 3px; text-transform: uppercase; font-size: .85rem; color: var(--muted); margin-bottom: 14px; }
   .field-group { display: flex; flex-direction: column; gap: 12px; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
-
   .field-wrap { display: flex; flex-direction: column; gap: 4px; }
   .field-wrap label { font-size: .8rem; color: var(--muted); }
-  .field-wrap input,
-  .field-wrap select {
+  .field-wrap input, .field-wrap select, .field-wrap textarea {
     background: var(--smoke); border: 1.5px solid var(--charcoal);
     border-radius: 8px; padding: 11px 13px; color: var(--cream);
     font-size: .95rem; font-family: 'Barlow', sans-serif;
     outline: none; transition: border-color .2s; width: 100%;
     appearance: none; -webkit-appearance: none;
   }
-  .field-wrap select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237a6a5a' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px; }
-  .field-wrap input:focus,
-  .field-wrap select:focus { border-color: var(--fire); }
-  .field-wrap input::placeholder { color: var(--charcoal); }
+  .field-wrap textarea { resize: vertical; min-height: 70px; }
+  .field-wrap select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237a6a5a' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px;
+  }
+  .field-wrap input:focus, .field-wrap select:focus, .field-wrap textarea:focus { border-color: var(--fire); }
+  .field-wrap input::placeholder, .field-wrap textarea::placeholder { color: var(--charcoal); }
   .field-wrap select option { background: #2d2520; color: var(--cream); }
+
+  /* Envío info badge */
+  .envio-badge {
+    margin-top: 8px; padding: 8px 12px;
+    background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 8px; font-size: .82rem; color: var(--gold);
+    display: none;
+  }
+  .envio-badge.visible { display: block; }
+  .envio-manual-note {
+    margin-top: 8px; font-size: .78rem; color: var(--muted); font-style: italic;
+  }
 
   /* ── PAYMENT ── */
   .payment-section { margin-top: 28px; }
@@ -219,7 +204,31 @@
   }
   .pay-option:hover { border-color: var(--fire); }
   .pay-option.selected { border-color: var(--fire); background: rgba(232,67,10,0.1); color: var(--cream); }
-  .pay-option .pay-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+  .pay-option .pay-icon-bi { font-size: 1.5rem; display: block; margin-bottom: 4px; color: var(--fire); }
+
+  /* SPEI info box */
+  .spei-info {
+    margin-top: 14px; padding: 16px;
+    background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 10px;
+  }
+  .spei-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .spei-label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  .spei-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--cream); letter-spacing: 2px; flex: 1; }
+  .spei-copy {
+    background: transparent; border: 1px solid var(--charcoal); border-radius: 6px;
+    color: var(--muted); cursor: pointer; padding: 4px 8px; font-size: .9rem;
+    transition: all .15s;
+  }
+  .spei-copy:hover { border-color: var(--gold); color: var(--gold); }
+  .spei-note {
+    font-size: .82rem; color: var(--gold); line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 6px;
+  }
+  .spei-note i { font-size: .9rem; flex-shrink: 0; margin-top: 2px; }
+
+  /* Pickup name section */
+  .pickup-section { margin-top: 28px; }
   .cash-input-wrap { margin-top: 14px; }
   .cash-input-wrap label { font-size: .85rem; color: var(--muted); display: block; margin-bottom: 6px; }
   .cash-input-wrap input {
@@ -229,7 +238,7 @@
     outline: none; transition: border-color .2s;
   }
   .cash-input-wrap input:focus { border-color: var(--fire); }
-  .change-display { margin-top: 10px; font-size: .9rem; color: var(--gold); display: none; }
+  .change-display { margin-top: 10px; font-size: .9rem; display: none; }
 
   /* ── ORDER BTN ── */
   .order-btn {
@@ -244,7 +253,7 @@
   }
   .order-btn:hover { opacity: .92; transform: translateY(-1px); }
   .order-btn:active { transform: translateY(0); }
-  .order-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .order-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
   .order-btn .bi { font-size: 1.4rem; }
 
   /* ── MISC ── */
@@ -268,6 +277,10 @@
   <img src="img/LRG_logo.webp" alt="Los Regios Grill" class="header-logo">
   <h1>Los Regios <span>Grill</span></h1>
   <p class="tagline">Carne de primera · Sabor regio</p>
+  <p class="header-address">
+    <i class="bi bi-geo-alt-fill"></i>
+    Carretera Coatzacoalcos-Salina Cruz 2–15, 96344 Minatitlán, Ver.
+  </p>
 </header>
 
 <main id="app">
@@ -289,27 +302,44 @@
     </div>
   </div>
 
-  <!-- MENU -->
+  <!-- CARNE ASADA -->
   <div class="category">
     <div class="section-title">Carne Asada Premium</div>
+    <div class="section-note">Incluye: cebolla asada, tortillas, salsas y limones</div>
     <div class="menu-grid" id="cat-carne"></div>
   </div>
+
+  <!-- HAMBURGUESAS -->
+  <div class="category">
+    <div class="section-title">Hamburguesas</div>
+    <div class="menu-grid" id="cat-hamburguesas"></div>
+  </div>
+
+  <!-- TACOS -->
   <div class="category">
     <div class="section-title">Tacos</div>
     <div class="menu-grid" id="cat-tacos"></div>
   </div>
+
+  <!-- QUESADILLAS -->
   <div class="category">
     <div class="section-title">Quesadillas / Volcanes (3 pz)</div>
     <div class="menu-grid" id="cat-quesadillas"></div>
   </div>
+
+  <!-- COMPLEMENTOS -->
   <div class="category">
     <div class="section-title">Complementos</div>
     <div class="menu-grid" id="cat-complementos"></div>
   </div>
+
+  <!-- AGUAS -->
   <div class="category">
     <div class="section-title">Aguas Frescas — $40 c/u</div>
     <div class="menu-grid" id="cat-aguas"></div>
   </div>
+
+  <!-- REFRESCOS -->
   <div class="category">
     <div class="section-title">Refrescos — $35 c/u</div>
     <div class="menu-grid" id="cat-refrescos"></div>
@@ -323,20 +353,44 @@
     <ul class="summary-items hidden" id="summary-list"></ul>
 
     <div class="divider"></div>
-    <div class="total-row">
+
+    <div class="subtotal-section">
+      <div class="subtotal-row" id="subtotal-row" style="display:none">
+        <span>Subtotal</span>
+        <span id="subtotal-display"></span>
+      </div>
+      <div class="subtotal-row envio" id="envio-row" style="display:none">
+        <span id="envio-label">Envío</span>
+        <span id="envio-display"></span>
+      </div>
+    </div>
+
+    <div class="total-row" style="margin-top:12px">
       <div class="total-label">Total<small>IVA incluido</small></div>
       <div class="total-amount" id="total-display">$0.00</div>
     </div>
 
-    <!-- DELIVERY FORM (solo a domicilio) -->
+    <!-- PICKUP NAME (solo recoger) -->
+    <div class="pickup-section hidden" id="pickup-section">
+      <div class="divider"></div>
+      <div class="delivery-title">Datos del cliente</div>
+      <div class="field-wrap">
+        <label for="p-nombre">Nombre</label>
+        <input type="text" id="p-nombre" placeholder="Nombre completo" oninput="updateOrderBtn()">
+      </div>
+    </div>
+
+    <!-- DELIVERY FORM -->
     <div class="delivery-section hidden" id="delivery-section">
       <div class="divider"></div>
       <div class="delivery-title">Datos de entrega</div>
       <div class="field-group">
+
         <div class="field-wrap">
           <label for="d-nombre">Nombre del cliente</label>
           <input type="text" id="d-nombre" placeholder="Nombre completo" oninput="updateOrderBtn()">
         </div>
+
         <div class="field-row">
           <div class="field-wrap">
             <label for="d-calle">Calle</label>
@@ -347,17 +401,14 @@
             <input type="text" id="d-numero" placeholder="Ej. 215" oninput="updateOrderBtn()">
           </div>
         </div>
-        <div class="field-wrap">
-          <label for="d-colonia">Colonia</label>
-          <input type="text" id="d-colonia" placeholder="Nombre de la colonia" oninput="updateOrderBtn()">
-        </div>
+
         <div class="field-row">
           <div class="field-wrap">
             <label for="d-municipio">Municipio</label>
-            <select id="d-municipio" onchange="updateOrderBtn()">
+            <select id="d-municipio" onchange="onMunicipioChange()">
               <option value="">Selecciona...</option>
-              <option value="Coatzacoalcos">Coatzacoalcos</option>
               <option value="Minatitlán">Minatitlán</option>
+              <option value="Cosoleacaque">Cosoleacaque</option>
             </select>
           </div>
           <div class="field-wrap">
@@ -365,27 +416,92 @@
             <input type="text" id="d-cp" placeholder="Ej. 96400" maxlength="5" oninput="updateOrderBtn()">
           </div>
         </div>
+
+        <!-- Colonia selector — Minatitlán: por zona; Cosoleacaque: solo "otra" -->
+        <div class="field-wrap hidden" id="colonia-wrap">
+          <label for="d-mina-colonia">Colonia</label>
+          <select id="d-mina-colonia" onchange="onMinaColoniaChange()">
+            <option value="">Selecciona colonia...</option>
+            <optgroup label="Envío $30" id="optgrp-30">
+              <option value="18 de Marzo|30">18 de Marzo</option>
+              <option value="Petrolera|30">Petrolera</option>
+              <option value="Buena Vista Norte|30">Buena Vista Norte</option>
+            </optgroup>
+            <optgroup label="Envío $40" id="optgrp-40">
+              <option value="Centro|40">Centro</option>
+              <option value="16 de Septiembre|40">16 de Septiembre</option>
+              <option value="Obrera|40">Obrera</option>
+              <option value="Nueva Tacoteno|40">Nueva Tacoteno</option>
+              <option value="Nueva Primero de Mayo|40">Nueva Primero de Mayo</option>
+              <option value="Buena Vista Sur|40">Buena Vista Sur</option>
+            </optgroup>
+            <optgroup label="Envío $50" id="optgrp-50">
+              <option value="Tacoteno|50">Tacoteno</option>
+              <option value="Nueva Mina|50">Nueva Mina</option>
+            </optgroup>
+            <optgroup label="Envío $55" id="optgrp-55">
+              <option value="Benito Juárez|55">Benito Juárez</option>
+              <option value="Insurgentes Sur|55">Insurgentes Sur</option>
+            </optgroup>
+            <optgroup label="Envío $60" id="optgrp-60">
+              <option value="Insurgentes Norte|60">Insurgentes Norte</option>
+              <option value="Las Delicias|60">Las Delicias</option>
+              <option value="El Mangal|60">El Mangal</option>
+              <option value="Cuauhtémoc|60">Cuauhtémoc</option>
+            </optgroup>
+            <option value="otra|0">Otra colonia (el envío se ajusta por WhatsApp)</option>
+          </select>
+          <div class="envio-badge" id="envio-badge"></div>
+          <div class="envio-manual-note hidden" id="envio-manual-note">
+            El costo de envío se confirmará por WhatsApp.
+          </div>
+        </div>
+
+        <!-- Campo de colonia manual (solo cuando se elige "Otra colonia") -->
+        <div class="field-wrap hidden" id="colonia-manual-wrap">
+          <label for="d-colonia-manual">Nombre de la colonia</label>
+          <input type="text" id="d-colonia-manual" placeholder="Escribe tu colonia" oninput="updateOrderBtn()">
+        </div>
+
         <div class="field-wrap">
           <label for="d-ref">Referencia</label>
           <input type="text" id="d-ref" placeholder="Ej. Casa color azul, frente a la tienda..." oninput="updateOrderBtn()">
         </div>
+
       </div>
     </div>
 
-    <!-- PAYMENT (solo a domicilio) -->
+    <!-- PAYMENT -->
     <div class="payment-section hidden" id="payment-section">
       <div class="divider"></div>
       <div class="payment-title">Forma de Pago</div>
       <div class="payment-options">
         <button class="pay-option" id="pay-card" onclick="selectPayment('card')">
-          <span class="pay-icon">💳</span>
-          Tarjeta
+          <i class="bi bi-bank pay-icon-bi"></i>
+          Transferencia SPEI
         </button>
         <button class="pay-option" id="pay-cash" onclick="selectPayment('cash')">
-          <span class="pay-icon">💵</span>
+          <i class="bi bi-cash-stack pay-icon-bi"></i>
           Efectivo
         </button>
       </div>
+
+      <!-- SPEI info -->
+      <div class="spei-info hidden" id="spei-info">
+        <div class="spei-row">
+          <span class="spei-label">Cuenta BBVA</span>
+          <span class="spei-value" id="spei-clabe">4152 3139 9377 9433</span>
+          <button class="spei-copy" onclick="copyClabe()" title="Copiar CLABE">
+            <i class="bi bi-copy"></i>
+          </button>
+        </div>
+        <p class="spei-note">
+          <i class="bi bi-exclamation-circle"></i>
+          Tu pedido no se preparará hasta recibir el comprobante de transferencia por WhatsApp.
+        </p>
+      </div>
+
+      <!-- Efectivo -->
       <div class="cash-input-wrap hidden" id="cash-wrap">
         <label for="cash-amount">¿Con cuánto pagas? (para dar cambio)</label>
         <input type="number" id="cash-amount" placeholder="Ej. 500" min="0" step="10" oninput="calcChange()">
@@ -410,28 +526,37 @@
 </div>
 
 <script>
+// ── ZONA DE ENVÍO (Minatitlán) ────────────────────────────────────────────
+// Costo se embebe en el value del <option> como "nombre|costo"
+// 0 = manual (otra colonia)
+
+// ── MENÚ ──────────────────────────────────────────────────────────────────
 const MENU = {
   carne: [
-    { id:'c1', name:'½ Kg Asada', price:250 },
-    { id:'c2', name:'1 Kg Asada', price:400 },
-    { id:'c3', name:'½ Kg Sirloin', price:300 },
-    { id:'c4', name:'1 Kg Sirloin', price:550 },
-    { id:'c5', name:'½ Kg Arrachera', price:380 },
-    { id:'c6', name:'1 Kg Arrachera', price:700 },
-    { id:'c7', name:'½ Kg Picaña', price:420 },
-    { id:'c8', name:'1 Kg Picaña', price:800 },
+    { id:'c1', name:'½ Kg Asada',    price:250 },
+    { id:'c2', name:'1 Kg Asada',    price:400 },
+    { id:'c3', name:'½ Kg Sirloin',  price:300 },
+    { id:'c4', name:'1 Kg Sirloin',  price:550 },
+    { id:'c5', name:'½ Kg Arrachera',price:380 },
+    { id:'c6', name:'1 Kg Arrachera',price:700 },
+    { id:'c7', name:'½ Kg Picaña',   price:420 },
+    { id:'c8', name:'1 Kg Picaña',   price:800 },
+  ],
+  hamburguesas: [
+    { id:'h1', name:'Hamburguesa', price:135, isBurger:true },
+    { id:'h2', name:'Hamburguesa con papas', price:150, isBurger:true },
   ],
   tacos: [
-    { id:'t1', name:'Taco Asada', price:50, isTaco:true },
-    { id:'t2', name:'Taco Sirloin', price:60, isTaco:true },
-    { id:'t3', name:'Taco Arrachera', price:70, isTaco:true },
-    { id:'t4', name:'Taco Picaña', price:80, isTaco:true },
+    { id:'t1', name:'Taco Asada',    price:50, isTaco:true },
+    { id:'t2', name:'Taco Sirloin',  price:60, isTaco:true },
+    { id:'t3', name:'Taco Arrachera',price:70, isTaco:true },
+    { id:'t4', name:'Taco Picaña',   price:80, isTaco:true },
   ],
   quesadillas: [
-    { id:'q1', baseName:'Asada', price:140, isQV:true },
-    { id:'q2', baseName:'Sirloin', price:155, isQV:true },
-    { id:'q3', baseName:'Arrachera', price:170, isQV:true },
-    { id:'q4', baseName:'Picaña', price:180, isQV:true },
+    { id:'q1', baseName:'Asada',    price:140, isQV:true },
+    { id:'q2', baseName:'Sirloin',  price:155, isQV:true },
+    { id:'q3', baseName:'Arrachera',price:170, isQV:true },
+    { id:'q4', baseName:'Picaña',   price:180, isQV:true },
   ],
   complementos: [
     { id:'x1', name:'Salchicha asada', price:25 },
@@ -443,6 +568,7 @@ const MENU = {
     { id:'x7', name:'Frijoles cargados (queso+carne)', price:80 },
     { id:'x8', name:'Cuarto de chistorra', price:100 },
     { id:'x9', name:'Guacamole belly', price:120 },
+    { id:'x10', name:'Papa asada', price:100, isPapa:true },
   ],
   aguas: [
     { id:'a1', name:'Limonada', price:40 },
@@ -460,13 +586,38 @@ const MENU = {
   ],
 };
 
-// ── STATE ──────────────────────────────────────────────────────────────────
-const order = {};   // id -> { qty, cheese, qvType }
-let paymentMethod = null;
-let orderType = null; // 'pickup' | 'delivery'
+const PAPA_TOPPINGS = [
+  { key:'ninguno', label:'Sin topping', extra:0 },
+  { key:'asada',   label:'Asada +$40',  extra:40 },
+  { key:'sirloin', label:'Sirloin +$50', extra:50 },
+  { key:'arrachera',label:'Arrachera +$60',extra:60 },
+  { key:'picana',  label:'Picaña +$70',  extra:70 },
+];
 
-// ── HELPERS ────────────────────────────────────────────────────────────────
+const BURGER_TYPES = [
+  { key:'res',   label:'Res' },
+  { key:'pollo', label:'Pollo' },
+];
+
+// ── ESTADO ────────────────────────────────────────────────────────────────
+const order = {};
+// order[id] = { qty, cheese, qvType, burgerType, papaTopping }
+let paymentMethod = null;
+let orderType = null;
+let envioInfo = { costo: null, nombre: '', manual: false }; // null = no aplica / no seleccionado
+
+// ── HELPERS ───────────────────────────────────────────────────────────────
 function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+function defaultState() { return { qty:0, cheese:false, qvType:'quesadilla', burgerType:'res', papaTopping:'ninguno' }; }
+
+function findItem(id) {
+  for (const cat of Object.values(MENU)) {
+    const f = cat.find(i => i.id === id);
+    if (f) return f;
+  }
+  return null;
+}
 
 function getItemName(item) {
   if (item.isQV) {
@@ -476,69 +627,77 @@ function getItemName(item) {
   return item.name;
 }
 
-function findItem(id) {
-  for (const cat of Object.values(MENU)) {
-    const found = cat.find(i => i.id === id);
-    if (found) return found;
+function getItemLinePrice(item, state) {
+  let p = item.price * state.qty;
+  if (item.isTaco && state.cheese) p += 15 * state.qty;
+  if (item.isPapa) {
+    const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
+    if (t) p += t.extra * state.qty;
   }
-  return null;
+  return p;
 }
 
-// ── ORDER TYPE ─────────────────────────────────────────────────────────────
-function setOrderType(type) {
-  orderType = type;
-  document.getElementById('ot-pickup').classList.toggle('selected', type === 'pickup');
-  document.getElementById('ot-delivery').classList.toggle('selected', type === 'delivery');
-
-  const isDelivery = type === 'delivery';
-  document.getElementById('delivery-section').classList.toggle('hidden', !isDelivery);
-  document.getElementById('payment-section').classList.toggle('hidden', !isDelivery);
-
-  // Reset payment if switching away from delivery
-  if (!isDelivery) {
-    paymentMethod = null;
-    document.getElementById('pay-card').classList.remove('selected');
-    document.getElementById('pay-cash').classList.remove('selected');
-    document.getElementById('cash-wrap').classList.add('hidden');
-    document.getElementById('change-display').style.display = 'none';
-  }
-
-  updateOrderBtn();
-}
-
-// ── CARD BUILDING ──────────────────────────────────────────────────────────
+// ── CARD BUILDING ─────────────────────────────────────────────────────────
 function buildCard(item) {
-  const state = order[item.id] || { qty: 0, cheese: false, qvType: 'quesadilla' };
+  const state = order[item.id] || defaultState();
   const hasQty = state.qty > 0;
-  const displayName = item.isQV
+
+  let displayName = item.isQV
     ? (state.qvType === 'volcan' ? `Volcán ${item.baseName}` : `Quesadilla ${item.baseName}`)
     : item.name;
+
+  let displayPrice = fmt(item.price);
+  if (item.isPapa) {
+    const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
+    if (t && t.extra > 0) displayPrice = fmt(item.price + t.extra);
+  }
+
+  // sub-options HTML
+  let extras = '';
+
+  if (item.isQV) {
+    extras += `<div class="toggle-row">
+      <button class="toggle-chip ${state.qvType !== 'volcan' ? 'active' : ''}" onclick="setQVType('${item.id}','quesadilla')">Quesadilla</button>
+      <button class="toggle-chip ${state.qvType === 'volcan' ? 'active' : ''}" onclick="setQVType('${item.id}','volcan')">Volcán</button>
+    </div>`;
+  }
+
+  if (item.isBurger) {
+    extras += `<div class="toggle-label">Tipo de carne:</div><div class="toggle-row">
+      ${BURGER_TYPES.map(bt => `<button class="toggle-chip ${state.burgerType === bt.key ? 'active' : ''}" onclick="setBurgerType('${item.id}','${bt.key}')">${bt.label}</button>`).join('')}
+    </div>`;
+  }
+
+  if (item.isTaco && hasQty) {
+    extras += `<div class="toggle-row">
+      <span style="font-size:.78rem;color:var(--muted);align-self:center">¿Con queso?</span>
+      <button class="toggle-chip ${state.cheese ? 'active-gold' : ''}" onclick="toggleCheese('${item.id}')">
+        ${state.cheese ? 'Con queso' : 'Sin queso'}
+      </button>
+    </div>`;
+  }
+
+  if (item.isPapa) {
+    extras += `<div class="toggle-label">Topping (opcional):</div><div class="toggle-row" style="flex-wrap:wrap">
+      ${PAPA_TOPPINGS.map(t => `<button class="toggle-chip ${state.papaTopping === t.key ? 'active' : ''}" onclick="setPapaTopping('${item.id}','${t.key}')" style="flex:unset;min-width:auto;font-size:.72rem;padding:3px 7px">${t.label}</button>`).join('')}
+    </div>`;
+  }
 
   return `
     <div class="item-card ${hasQty ? 'has-quantity' : ''}" id="card-${item.id}">
       <div class="item-name">${displayName}</div>
       ${item.isTaco ? '<div class="item-note">+$15 queso opcional</div>' : ''}
       ${item.isQV ? '<div class="item-note">3 piezas</div>' : ''}
+      ${item.isPapa ? '<div class="item-note">Elige un topping de carne</div>' : ''}
       <div class="item-bottom">
-        <div class="item-price">${fmt(item.price)}</div>
+        <div class="item-price">${displayPrice}</div>
         <div class="qty-control">
           <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
           <span class="qty-num">${state.qty}</span>
           <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
         </div>
       </div>
-      ${item.isQV ? `
-      <div class="qv-toggle">
-        <button class="qv-btn ${state.qvType !== 'volcan' ? 'active' : ''}" onclick="setQVType('${item.id}','quesadilla')">Quesadilla</button>
-        <button class="qv-btn ${state.qvType === 'volcan' ? 'active' : ''}" onclick="setQVType('${item.id}','volcan')">Volcán</button>
-      </div>` : ''}
-      ${item.isTaco && hasQty ? `
-      <div class="taco-extras">
-        <span>¿Con queso?</span>
-        <button class="taco-cheese-btn ${state.cheese ? 'active' : ''}" onclick="toggleCheese('${item.id}')">
-          ${state.cheese ? 'Con queso' : 'Sin queso'}
-        </button>
-      </div>` : ''}
+      ${extras}
     </div>`;
 }
 
@@ -548,33 +707,12 @@ function renderCategory(containerId, items) {
 
 function renderAll() {
   renderCategory('cat-carne', MENU.carne);
+  renderCategory('cat-hamburguesas', MENU.hamburguesas);
   renderCategory('cat-tacos', MENU.tacos);
   renderCategory('cat-quesadillas', MENU.quesadillas);
   renderCategory('cat-complementos', MENU.complementos);
   renderCategory('cat-aguas', MENU.aguas);
   renderCategory('cat-refrescos', MENU.refrescos);
-  updateSummary();
-}
-
-// ── ACTIONS ────────────────────────────────────────────────────────────────
-function changeQty(id, delta) {
-  if (!order[id]) order[id] = { qty: 0, cheese: false, qvType: 'quesadilla' };
-  order[id].qty = Math.max(0, order[id].qty + delta);
-  if (order[id].qty === 0) order[id].cheese = false;
-  redrawCard(id);
-  updateSummary();
-}
-
-function toggleCheese(id) {
-  if (order[id]) order[id].cheese = !order[id].cheese;
-  redrawCard(id);
-  updateSummary();
-}
-
-function setQVType(id, type) {
-  if (!order[id]) order[id] = { qty: 0, cheese: false, qvType: type };
-  order[id].qvType = type;
-  redrawCard(id);
   updateSummary();
 }
 
@@ -584,17 +722,158 @@ function redrawCard(id) {
   if (card && item) card.outerHTML = buildCard(item);
 }
 
+// ── ACTIONS ───────────────────────────────────────────────────────────────
+function changeQty(id, delta) {
+  if (!order[id]) order[id] = defaultState();
+  order[id].qty = Math.max(0, order[id].qty + delta);
+  if (order[id].qty === 0) { order[id].cheese = false; }
+  redrawCard(id);
+  updateSummary();
+}
+
+function toggleCheese(id) {
+  if (!order[id]) order[id] = defaultState();
+  order[id].cheese = !order[id].cheese;
+  redrawCard(id); updateSummary();
+}
+
+function setQVType(id, t) {
+  if (!order[id]) order[id] = defaultState();
+  order[id].qvType = t;
+  redrawCard(id); updateSummary();
+}
+
+function setBurgerType(id, t) {
+  if (!order[id]) order[id] = defaultState();
+  order[id].burgerType = t;
+  redrawCard(id); updateSummary();
+}
+
+function setPapaTopping(id, t) {
+  if (!order[id]) order[id] = defaultState();
+  order[id].papaTopping = t;
+  redrawCard(id); updateSummary();
+}
+
+// ── ORDER TYPE ────────────────────────────────────────────────────────────
+function setOrderType(type) {
+  orderType = type;
+  document.getElementById('ot-pickup').classList.toggle('selected', type === 'pickup');
+  document.getElementById('ot-delivery').classList.toggle('selected', type === 'delivery');
+
+  const isDelivery = type === 'delivery';
+  const isPickup   = type === 'pickup';
+
+  document.getElementById('pickup-section').classList.toggle('hidden', !isPickup);
+  document.getElementById('delivery-section').classList.toggle('hidden', !isDelivery);
+  document.getElementById('payment-section').classList.toggle('hidden', !isDelivery);
+
+  if (!isDelivery) {
+    paymentMethod = null;
+    envioInfo = { costo: null, nombre: '', manual: false };
+    document.getElementById('pay-card').classList.remove('selected');
+    document.getElementById('pay-cash').classList.remove('selected');
+    document.getElementById('spei-info').classList.add('hidden');
+    document.getElementById('cash-wrap').classList.add('hidden');
+    document.getElementById('change-display').style.display = 'none';
+  }
+
+  updateSummary();
+}
+
+// ── MUNICIPIO / ENVÍO ─────────────────────────────────────────────────────
+function onMunicipioChange() {
+  const muni = document.getElementById('d-municipio').value;
+  const coloniaWrap = document.getElementById('colonia-wrap');
+  const select = document.getElementById('d-mina-colonia');
+  const badge = document.getElementById('envio-badge');
+  const manualNote = document.getElementById('envio-manual-note');
+
+  // Show/hide the colonia select for both municipalities
+  coloniaWrap.classList.toggle('hidden', !muni);
+
+  // Show or hide Minatitlán-specific optgroups
+  const minaGroups = ['optgrp-30','optgrp-40','optgrp-50','optgrp-55','optgrp-60'];
+  minaGroups.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = (muni === 'Minatitlán') ? '' : 'none';
+  });
+
+  // Reset colonia selector
+  select.value = '';
+  badge.classList.remove('visible');
+  badge.textContent = '';
+  manualNote.classList.add('hidden');
+
+  if (muni === 'Cosoleacaque') {
+    // Auto-select "otra" and mark as manual
+    select.value = 'otra|0';
+    manualNote.classList.remove('hidden');
+    envioInfo = { costo: null, nombre: 'Cosoleacaque', manual: true };
+  } else {
+    envioInfo = { costo: null, nombre: '', manual: false };
+  }
+
+  updateSummary();
+}
+
+function onMinaColoniaChange() {
+  const val = document.getElementById('d-mina-colonia').value;
+  const badge = document.getElementById('envio-badge');
+  const manualNote = document.getElementById('envio-manual-note');
+  const manualWrap = document.getElementById('colonia-manual-wrap');
+
+  if (!val) {
+    badge.classList.remove('visible');
+    badge.textContent = '';
+    manualNote.classList.add('hidden');
+    manualWrap.classList.add('hidden');
+    envioInfo = { costo: null, nombre: '', manual: false };
+    updateSummary(); return;
+  }
+
+  const [nombre, costoStr] = val.split('|');
+  const costo = parseInt(costoStr, 10);
+
+  if (nombre === 'otra' || costo === 0) {
+    badge.classList.remove('visible');
+    manualNote.classList.remove('hidden');
+    manualWrap.classList.remove('hidden');
+    document.getElementById('d-colonia-manual').value = '';
+    envioInfo = { costo: null, nombre: 'otra', manual: true };
+  } else {
+    badge.classList.add('visible');
+    badge.textContent = `Costo de envío a ${nombre}: ${fmt(costo)}`;
+    manualNote.classList.add('hidden');
+    manualWrap.classList.add('hidden');
+    envioInfo = { costo, nombre, manual: false };
+  }
+
+  updateSummary();
+}
+
+// ── PAYMENT ───────────────────────────────────────────────────────────────
 function selectPayment(method) {
   paymentMethod = method;
   document.getElementById('pay-card').classList.toggle('selected', method === 'card');
   document.getElementById('pay-cash').classList.toggle('selected', method === 'cash');
+  document.getElementById('spei-info').classList.toggle('hidden', method !== 'card');
   document.getElementById('cash-wrap').classList.toggle('hidden', method !== 'cash');
   if (method === 'card') document.getElementById('change-display').style.display = 'none';
   updateOrderBtn();
 }
 
+function copyClabe() {
+  const clabe = document.getElementById('spei-clabe').textContent;
+  navigator.clipboard.writeText(clabe).then(() => {
+    const btn = document.querySelector('.spei-copy');
+    btn.innerHTML = '<i class="bi bi-check2"></i>';
+    setTimeout(() => { btn.innerHTML = '<i class="bi bi-copy"></i>'; }, 1500);
+  });
+}
+
 function calcChange() {
-  const total = getTotal();
+  const total = getGrandTotal();
   const paid = parseFloat(document.getElementById('cash-amount').value);
   const display = document.getElementById('change-display');
   if (isNaN(paid)) { display.style.display = 'none'; return; }
@@ -610,31 +889,50 @@ function calcChange() {
   updateOrderBtn();
 }
 
-// ── TOTALS ─────────────────────────────────────────────────────────────────
-function getTotal() {
+// ── TOTALS ────────────────────────────────────────────────────────────────
+function getSubtotal() {
   let total = 0;
   for (const [id, state] of Object.entries(order)) {
     if (state.qty === 0) continue;
     const item = findItem(id);
     if (!item) continue;
-    total += item.price * state.qty;
-    if (item.isTaco && state.cheese) total += 15 * state.qty;
+    total += getItemLinePrice(item, state);
   }
   return total;
 }
 
-function updateSummary() {
-  const total = getTotal();
-  const lines = [];
+function getEnvioCost() {
+  if (orderType !== 'delivery') return 0;
+  if (envioInfo.manual || envioInfo.costo === null) return 0;
+  return envioInfo.costo;
+}
 
+function getGrandTotal() {
+  return getSubtotal() + getEnvioCost();
+}
+
+function updateSummary() {
+  const subtotal = getSubtotal();
+  const envioCost = getEnvioCost();
+  const grandTotal = subtotal + envioCost;
+  const hasItems = subtotal > 0;
+
+  // Item lines
+  const lines = [];
   for (const [id, state] of Object.entries(order)) {
     if (state.qty === 0) continue;
     const item = findItem(id);
     if (!item) continue;
-    let lineTotal = item.price * state.qty;
+    const linePrice = getItemLinePrice(item, state);
+
     let name = `${state.qty}x ${getItemName(item)}`;
-    if (item.isTaco && state.cheese) { lineTotal += 15 * state.qty; name += ' (con queso)'; }
-    lines.push({ name, price: lineTotal });
+    if (item.isTaco && state.cheese) name += ' (con queso)';
+    if (item.isBurger) name += ` (${state.burgerType === 'pollo' ? 'Pollo' : 'Res'})`;
+    if (item.isPapa) {
+      const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
+      if (t && t.extra > 0) name += ` (topping: ${t.label.split(' ')[0]})`;
+    }
+    lines.push({ name, price: linePrice });
   }
 
   const emptyMsg = document.getElementById('empty-msg');
@@ -654,95 +952,169 @@ function updateSummary() {
     ).join('');
   }
 
-  document.getElementById('total-display').textContent = fmt(total);
-  document.getElementById('sticky-total').textContent = fmt(total);
+  // Subtotal / envío rows
+  const subtotalRow = document.getElementById('subtotal-row');
+  const envioRow = document.getElementById('envio-row');
+  const subtotalDisplay = document.getElementById('subtotal-display');
+  const envioDisplay = document.getElementById('envio-display');
+  const envioLabel = document.getElementById('envio-label');
+
+  if (orderType === 'delivery' && hasItems) {
+    subtotalRow.style.display = 'flex';
+    subtotalDisplay.textContent = fmt(subtotal);
+
+    envioRow.style.display = 'flex';
+    if (envioInfo.manual) {
+      envioLabel.textContent = 'Envío';
+      envioDisplay.textContent = 'Precio a confirmar';
+    } else if (envioInfo.costo !== null) {
+      envioLabel.textContent = `Envío (${envioInfo.nombre})`;
+      envioDisplay.textContent = fmt(envioCost);
+    } else {
+      envioLabel.textContent = 'Envío';
+      envioDisplay.textContent = '—';
+    }
+  } else {
+    subtotalRow.style.display = 'none';
+    envioRow.style.display = 'none';
+  }
+
+  document.getElementById('total-display').textContent = fmt(grandTotal);
+  document.getElementById('sticky-total').textContent = fmt(grandTotal);
+
   updateOrderBtn();
   if (paymentMethod === 'cash') calcChange();
 }
 
+// ── VALIDATION ────────────────────────────────────────────────────────────
 function deliveryFieldsFilled() {
   const nombre   = document.getElementById('d-nombre').value.trim();
   const calle    = document.getElementById('d-calle').value.trim();
   const numero   = document.getElementById('d-numero').value.trim();
-  const colonia  = document.getElementById('d-colonia').value.trim();
   const municipio= document.getElementById('d-municipio').value;
   const cp       = document.getElementById('d-cp').value.trim();
-  return nombre && calle && numero && colonia && municipio && cp;
+  if (!nombre || !calle || !numero || !municipio || !cp) return false;
+
+  // Colonia selector required for both municipalities
+  const colonia = document.getElementById('d-mina-colonia').value;
+  if (!colonia) return false;
+
+  // If "otra colonia" was selected, the manual text field must be filled
+  const [coloniaKey] = colonia.split('|');
+  if (coloniaKey === 'otra') {
+    const manual = document.getElementById('d-colonia-manual').value.trim();
+    if (!manual) return false;
+  }
+
+  return true;
+}
+
+function pickupFieldsFilled() {
+  return document.getElementById('p-nombre').value.trim() !== '';
 }
 
 function updateOrderBtn() {
-  const total = getTotal();
   const btn = document.getElementById('order-btn');
+  const subtotal = getSubtotal();
+  if (orderType === null || subtotal === 0) { btn.disabled = true; return; }
 
-  if (orderType === null || total === 0) { btn.disabled = true; return; }
+  if (orderType === 'pickup') {
+    btn.disabled = !pickupFieldsFilled();
+    return;
+  }
 
-  if (orderType === 'pickup') { btn.disabled = false; return; }
-
-  // delivery
   if (!deliveryFieldsFilled() || paymentMethod === null) { btn.disabled = true; return; }
   if (paymentMethod === 'cash') {
+    const total = getGrandTotal();
     const paid = parseFloat(document.getElementById('cash-amount').value);
     if (isNaN(paid) || paid < total) { btn.disabled = true; return; }
   }
   btn.disabled = false;
 }
 
-// ── SEND ───────────────────────────────────────────────────────────────────
+// ── SEND ──────────────────────────────────────────────────────────────────
 function sendOrder() {
-  const total = getTotal();
+  const subtotal = getSubtotal();
+  const envioCost = getEnvioCost();
+  const grandTotal = subtotal + envioCost;
   const lines = [];
 
   for (const [id, state] of Object.entries(order)) {
     if (state.qty === 0) continue;
     const item = findItem(id);
     if (!item) continue;
-    let lineTotal = item.price * state.qty;
+    const linePrice = getItemLinePrice(item, state);
     let name = getItemName(item);
-    if (item.isTaco && state.cheese) { lineTotal += 15 * state.qty; name += ' (con queso)'; }
-    lines.push(`- ${state.qty}x ${name}: ${fmt(lineTotal)}`);
+    if (item.isTaco && state.cheese) name += ' (con queso)';
+    if (item.isBurger) name += ` (${state.burgerType === 'pollo' ? 'Pollo' : 'Res'})`;
+    if (item.isPapa) {
+      const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
+      if (t && t.extra > 0) name += ` (topping: ${t.label.split(' ')[0]})`;
+    }
+    lines.push(`- ${state.qty}x ${name}: ${fmt(linePrice)}`);
   }
 
   const tipoEntrega = orderType === 'pickup' ? 'Para recoger en local' : 'A domicilio';
 
-  let deliveryInfo = '';
+  let clienteInfo = '';
+  let envioLine = '';
+
+  if (orderType === 'pickup') {
+    const nombre = document.getElementById('p-nombre').value.trim();
+    clienteInfo = `\n*Cliente:* ${nombre}`;
+  }
+
   if (orderType === 'delivery') {
     const nombre    = document.getElementById('d-nombre').value.trim();
     const calle     = document.getElementById('d-calle').value.trim();
     const numero    = document.getElementById('d-numero').value.trim();
-    const colonia   = document.getElementById('d-colonia').value.trim();
     const municipio = document.getElementById('d-municipio').value;
     const cp        = document.getElementById('d-cp').value.trim();
     const ref       = document.getElementById('d-ref').value.trim();
 
-    deliveryInfo = `
-*Cliente:* ${nombre}
-*Dirección:* ${calle} ${numero}, Col. ${colonia}, ${municipio}, C.P. ${cp}${ref ? `\n*Referencia:* ${ref}` : ''}`;
+    // Get colonia name from the selector (or manual input if "otra")
+    const coloniaVal = document.getElementById('d-mina-colonia').value;
+    const [coloniaKey] = coloniaVal ? coloniaVal.split('|') : [''];
+    let coloniaDisplay;
+    if (coloniaKey === 'otra') {
+      coloniaDisplay = document.getElementById('d-colonia-manual').value.trim();
+    } else {
+      coloniaDisplay = coloniaKey || '';
+    }
+
+    clienteInfo = `\n*Cliente:* ${nombre}\n*Dirección:* ${calle} ${numero}, Col. ${coloniaDisplay}, ${municipio}, C.P. ${cp}${ref ? `\n*Referencia:* ${ref}` : ''}`;
+
+    if (envioInfo.manual) {
+      envioLine = '\n*Envío:* Precio a confirmar por WhatsApp';
+    } else if (envioInfo.costo !== null) {
+      envioLine = `\n*Envío (${envioInfo.nombre}):* ${fmt(envioCost)}`;
+    }
   }
 
   let payInfo = '';
   if (orderType === 'delivery') {
     if (paymentMethod === 'card') {
-      payInfo = '\n*Pago:* Con tarjeta';
+      payInfo = '\n*Pago:* Transferencia SPEI (enviaré comprobante)';
     } else {
       const paid = parseFloat(document.getElementById('cash-amount').value);
-      payInfo = `\n*Pago:* Efectivo — Paga con ${fmt(paid)} (cambio: ${fmt(paid - total)})`;
+      payInfo = `\n*Pago:* Efectivo — Paga con ${fmt(paid)} (cambio: ${fmt(paid - grandTotal)})`;
     }
   }
 
+  const envioResumen = envioCost > 0 ? `\n*Subtotal:* ${fmt(subtotal)}${envioLine}` : (envioLine || '');
+
   const msg =
 `*Pedido - Los Regios Grill*
-*Tipo:* ${tipoEntrega}
-${deliveryInfo}
+*Tipo:* ${tipoEntrega}${clienteInfo}
 ─────────────────────
 ${lines.join('\n')}
-─────────────────────
-*Total (IVA incluido): ${fmt(total)}*${payInfo}`;
+─────────────────────${envioResumen}
+*Total (IVA incluido): ${fmt(grandTotal)}*${payInfo}`;
 
-  const phone = '528124289507';
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/528123370028?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// ── INIT ───────────────────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────────────
 renderAll();
 </script>
 </body>
