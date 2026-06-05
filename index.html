@@ -6,6 +6,7 @@
 <title>Los Regios Grill — Ordena en Línea</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="icon" href="img/favicon.png">
 <style>
   :root {
     --fire: #e8430a;
@@ -269,6 +270,9 @@
   .sticky-total-amount { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
   @media (min-width: 700px) { .sticky-bar { display: none; } }
   html { scroll-behavior: smooth; }
+  .tagline {
+    padding: 5px;
+  }
 </style>
 </head>
 <body>
@@ -285,6 +289,51 @@
 
 <main id="app">
 
+
+  <!-- CARNE ASADA -->
+  <div class="category">
+    <div class="section-title">Carne Asada Premium</div>
+    <div class="section-note">Incluye: cebolla asada, tortillas, salsas y limones</div>
+    <div class="menu-grid" id="cat-carne"></div>
+  </div>
+
+  <!-- HAMBURGUESAS -->
+  <div class="category">
+    <div class="section-title">Hamburguesas</div>
+    <div class="menu-grid" id="cat-hamburguesas-res" style="margin-bottom:16px"></div>
+    <div class="menu-grid" id="cat-hamburguesas-pollo"></div>
+  </div>
+
+  <!-- TACOS -->
+  <div class="category">
+    <div class="section-title">Tacos</div>
+    <div class="menu-grid" id="cat-tacos"></div>
+  </div>
+
+  <!-- QUESADILLAS -->
+  <div class="category">
+    <div class="section-title">Quesadillas / Volcanes</div>
+    <div class="menu-grid" id="cat-quesadillas"></div>
+  </div>
+
+  <!-- COMPLEMENTOS -->
+  <div class="category">
+    <div class="section-title">Complementos</div>
+    <div class="menu-grid" id="cat-complementos"></div>
+  </div>
+
+  <!-- AGUAS -->
+  <div class="category">
+    <div class="section-title">Aguas Frescas</div>
+    <div class="menu-grid" id="cat-aguas"></div>
+  </div>
+
+  <!-- REFRESCOS -->
+  <div class="category">
+    <div class="section-title">Refrescos</div>
+    <div class="menu-grid" id="cat-refrescos"></div>
+  </div>
+
   <!-- ORDER TYPE -->
   <div class="order-type-block">
     <div class="order-type-title">¿Cómo quieres tu pedido?</div>
@@ -300,49 +349,6 @@
         <div class="ot-sub">Te lo llevamos</div>
       </button>
     </div>
-  </div>
-
-  <!-- CARNE ASADA -->
-  <div class="category">
-    <div class="section-title">Carne Asada Premium</div>
-    <div class="section-note">Incluye: cebolla asada, tortillas, salsas y limones</div>
-    <div class="menu-grid" id="cat-carne"></div>
-  </div>
-
-  <!-- HAMBURGUESAS -->
-  <div class="category">
-    <div class="section-title">Hamburguesas</div>
-    <div class="menu-grid" id="cat-hamburguesas"></div>
-  </div>
-
-  <!-- TACOS -->
-  <div class="category">
-    <div class="section-title">Tacos</div>
-    <div class="menu-grid" id="cat-tacos"></div>
-  </div>
-
-  <!-- QUESADILLAS -->
-  <div class="category">
-    <div class="section-title">Quesadillas / Volcanes (3 pz)</div>
-    <div class="menu-grid" id="cat-quesadillas"></div>
-  </div>
-
-  <!-- COMPLEMENTOS -->
-  <div class="category">
-    <div class="section-title">Complementos</div>
-    <div class="menu-grid" id="cat-complementos"></div>
-  </div>
-
-  <!-- AGUAS -->
-  <div class="category">
-    <div class="section-title">Aguas Frescas — $40 c/u</div>
-    <div class="menu-grid" id="cat-aguas"></div>
-  </div>
-
-  <!-- REFRESCOS -->
-  <div class="category">
-    <div class="section-title">Refrescos — $35 c/u</div>
-    <div class="menu-grid" id="cat-refrescos"></div>
   </div>
 
   <!-- SUMMARY -->
@@ -489,9 +495,9 @@
       <!-- SPEI info -->
       <div class="spei-info hidden" id="spei-info">
         <div class="spei-row">
-          <span class="spei-label">Cuenta BBVA</span>
+          <span class="spei-label">CUENTA BBVA</span>
           <span class="spei-value" id="spei-clabe">4152 3139 9377 9433</span>
-          <button class="spei-copy" onclick="copyClabe()" title="Copiar CLABE">
+          <button class="spei-copy" onclick="copyClabe()" title="Copiar CUENTA">
             <i class="bi bi-copy"></i>
           </button>
         </div>
@@ -542,9 +548,13 @@ const MENU = {
     { id:'c7', name:'½ Kg Picaña',   price:420 },
     { id:'c8', name:'1 Kg Picaña',   price:800 },
   ],
-  hamburguesas: [
-    { id:'h1', name:'Hamburguesa', price:135, isBurger:true },
-    { id:'h2', name:'Hamburguesa con papas', price:150, isBurger:true },
+  hamburguesasRes: [
+    { id:'h1', name:'Hamburguesa de Res', price:135, isBurgerRes:true },
+    { id:'h2', name:'Hamburguesa de Res con papas', price:150, isBurgerRes:true },
+  ],
+  hamburguesasPollo: [
+    { id:'h3', name:'Hamburguesa de Pollo', price:135, isBurgerPollo:true },
+    { id:'h4', name:'Hamburguesa de Pollo con papas', price:150, isBurgerPollo:true },
   ],
   tacos: [
     { id:'t1', name:'Taco Asada',    price:50, isTaco:true },
@@ -582,7 +592,7 @@ const MENU = {
     { id:'r2', name:'Fresca', price:35 },
     { id:'r3', name:'Sidral Mundet', price:35 },
     { id:'r4', name:'Fanta Naranja', price:35 },
-    { id:'r5', name:'Fanta Fresca', price:35 },
+    { id:'r5', name:'Fanta Fresa', price:35 },
   ],
 };
 
@@ -594,9 +604,10 @@ const PAPA_TOPPINGS = [
   { key:'picana',  label:'Picaña +$70',  extra:70 },
 ];
 
-const BURGER_TYPES = [
-  { key:'res',   label:'Res' },
-  { key:'pollo', label:'Pollo' },
+const POLLO_VARIANTS = [
+  { key:'natural', label:'Natural' },
+  { key:'bbq',     label:'BBQ' },
+  { key:'bufalo',  label:'Búfalo' },
 ];
 
 // ── ESTADO ────────────────────────────────────────────────────────────────
@@ -609,7 +620,7 @@ let envioInfo = { costo: null, nombre: '', manual: false }; // null = no aplica 
 // ── HELPERS ───────────────────────────────────────────────────────────────
 function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 
-function defaultState() { return { qty:0, cheese:false, qvType:'quesadilla', burgerType:'res', papaTopping:'ninguno' }; }
+function defaultState() { return { qty:0, cheese:false, qvType:'quesadilla', polloVariant:'natural', papaTopping:'ninguno' }; }
 
 function findItem(id) {
   for (const cat of Object.values(MENU)) {
@@ -662,9 +673,9 @@ function buildCard(item) {
     </div>`;
   }
 
-  if (item.isBurger) {
-    extras += `<div class="toggle-label">Tipo de carne:</div><div class="toggle-row">
-      ${BURGER_TYPES.map(bt => `<button class="toggle-chip ${state.burgerType === bt.key ? 'active' : ''}" onclick="setBurgerType('${item.id}','${bt.key}')">${bt.label}</button>`).join('')}
+  if (item.isBurgerPollo) {
+    extras += `<div class="toggle-label">Estilo:</div><div class="toggle-row">
+      ${POLLO_VARIANTS.map(v => `<button class="toggle-chip ${state.polloVariant === v.key ? 'active' : ''}" onclick="setPolloVariant('${item.id}','${v.key}')">${v.label}</button>`).join('')}
     </div>`;
   }
 
@@ -707,7 +718,8 @@ function renderCategory(containerId, items) {
 
 function renderAll() {
   renderCategory('cat-carne', MENU.carne);
-  renderCategory('cat-hamburguesas', MENU.hamburguesas);
+  renderCategory('cat-hamburguesas-res', MENU.hamburguesasRes);
+  renderCategory('cat-hamburguesas-pollo', MENU.hamburguesasPollo);
   renderCategory('cat-tacos', MENU.tacos);
   renderCategory('cat-quesadillas', MENU.quesadillas);
   renderCategory('cat-complementos', MENU.complementos);
@@ -743,9 +755,9 @@ function setQVType(id, t) {
   redrawCard(id); updateSummary();
 }
 
-function setBurgerType(id, t) {
+function setPolloVariant(id, v) {
   if (!order[id]) order[id] = defaultState();
-  order[id].burgerType = t;
+  order[id].polloVariant = v;
   redrawCard(id); updateSummary();
 }
 
@@ -927,7 +939,10 @@ function updateSummary() {
 
     let name = `${state.qty}x ${getItemName(item)}`;
     if (item.isTaco && state.cheese) name += ' (con queso)';
-    if (item.isBurger) name += ` (${state.burgerType === 'pollo' ? 'Pollo' : 'Res'})`;
+    if (item.isBurgerPollo) {
+      const v = POLLO_VARIANTS.find(x => x.key === state.polloVariant);
+      name += ` (${v ? v.label : 'Natural'})`;
+    }
     if (item.isPapa) {
       const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
       if (t && t.extra > 0) name += ` (topping: ${t.label.split(' ')[0]})`;
@@ -1046,7 +1061,10 @@ function sendOrder() {
     const linePrice = getItemLinePrice(item, state);
     let name = getItemName(item);
     if (item.isTaco && state.cheese) name += ' (con queso)';
-    if (item.isBurger) name += ` (${state.burgerType === 'pollo' ? 'Pollo' : 'Res'})`;
+    if (item.isBurgerPollo) {
+      const v = POLLO_VARIANTS.find(x => x.key === state.polloVariant);
+      name += ` (${v ? v.label : 'Natural'})`;
+    }
     if (item.isPapa) {
       const t = PAPA_TOPPINGS.find(x => x.key === state.papaTopping);
       if (t && t.extra > 0) name += ` (topping: ${t.label.split(' ')[0]})`;
