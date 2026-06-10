@@ -269,6 +269,37 @@
   .sticky-total-label { font-size: .8rem; color: var(--muted); }
   .sticky-total-amount { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); }
   @media (min-width: 700px) { .sticky-bar { display: none; } }
+  /* ── DELIVERY TOAST ── */
+  .toast-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(3px);
+    animation: fadeIn .2s ease;
+  }
+  .toast-box {
+    background: var(--ash); border: 1px solid rgba(232,67,10,0.4);
+    border-radius: 16px; padding: 28px 28px 24px;
+    max-width: 340px; width: 90%; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: slideUp .25s ease;
+  }
+  .toast-icon { font-size: 2rem; color: var(--fire); margin-bottom: 12px; }
+  .toast-title {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem;
+    color: var(--cream); margin-bottom: 8px;
+  }
+  .toast-body { font-size: .88rem; color: var(--sand); line-height: 1.6; }
+  .toast-btn {
+    margin-top: 20px; padding: 10px 28px;
+    background: var(--fire); border: none; border-radius: 8px;
+    color: white; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 1px;
+    cursor: pointer; transition: opacity .15s;
+  }
+  .toast-btn:hover { opacity: .88; }
+  @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+  @keyframes slideUp { from { transform:translateY(16px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+
   html { scroll-behavior: smooth; }
   .tagline {
     padding: 5px;
@@ -428,32 +459,81 @@
           <label for="d-mina-colonia">Colonia</label>
           <select id="d-mina-colonia" onchange="onMinaColoniaChange()">
             <option value="">Selecciona colonia...</option>
-            <optgroup label="Envío $30" id="optgrp-30">
-              <option value="18 de Marzo|30">18 de Marzo</option>
-              <option value="Petrolera|30">Petrolera</option>
+            <optgroup label="Minatitlán" id="optgrp-mina">
+              <option value="10 de Mayo|20">10 de Mayo</option>
+              <option value="16 de Septiembre|55">16 de Septiembre</option>
+              <option value="18 de Marzo|50">18 de Marzo</option>
+              <option value="20 de Noviembre|35">20 de Noviembre</option>
+              <option value="8 de Mayo|35">8 de Mayo</option>
+              <option value="Agustín Acosta Lagunes|60">Agustín Acosta Lagunes</option>
+              <option value="Benito Juárez|70">Benito Juárez</option>
+              <option value="Bohemia|55">Bohemia</option>
               <option value="Buena Vista Norte|30">Buena Vista Norte</option>
-            </optgroup>
-            <optgroup label="Envío $40" id="optgrp-40">
-              <option value="Centro|40">Centro</option>
-              <option value="16 de Septiembre|40">16 de Septiembre</option>
-              <option value="Obrera|40">Obrera</option>
-              <option value="Nueva Tacoteno|40">Nueva Tacoteno</option>
-              <option value="Nueva Primero de Mayo|40">Nueva Primero de Mayo</option>
-              <option value="Buena Vista Sur|40">Buena Vista Sur</option>
-            </optgroup>
-            <optgroup label="Envío $50" id="optgrp-50">
-              <option value="Tacoteno|50">Tacoteno</option>
-              <option value="Nueva Mina|50">Nueva Mina</option>
-            </optgroup>
-            <optgroup label="Envío $55" id="optgrp-55">
-              <option value="Benito Juárez|55">Benito Juárez</option>
-              <option value="Insurgentes Sur|55">Insurgentes Sur</option>
-            </optgroup>
-            <optgroup label="Envío $60" id="optgrp-60">
-              <option value="Insurgentes Norte|60">Insurgentes Norte</option>
-              <option value="Las Delicias|60">Las Delicias</option>
+              <option value="Buena Vista Sur|45">Buena Vista Sur</option>
+              <option value="Centro|50">Centro</option>
+              <option value="Cerro Alto|90">Cerro Alto</option>
+              <option value="Chapala|45">Chapala</option>
+              <option value="Colonia Azteca|30">Colonia Azteca</option>
+              <option value="Congreso|20">Congreso</option>
+              <option value="Cuauhtémoc|50">Cuauhtémoc</option>
+              <option value="Dante Delgado Ranauro|50">Dante Delgado Ranauro</option>
+              <option value="De los Maestros|35">De los Maestros</option>
+              <option value="Diana Laura Riojas|30">Diana Laura Riojas</option>
+              <option value="Eduardo Soto Innes|45">Eduardo Soto Innes</option>
+              <option value="Ejido El Jaguey|75">Ejido El Jaguey</option>
               <option value="El Mangal|60">El Mangal</option>
-              <option value="Cuauhtémoc|60">Cuauhtémoc</option>
+              <option value="El Palmar|60">El Palmar</option>
+              <option value="Emiliano Zapata|20">Emiliano Zapata</option>
+              <option value="Floresta Residencial|65">Floresta Residencial</option>
+              <option value="FOVISSTE|70">FOVISSTE</option>
+              <option value="Framboyan|55">Framboyan</option>
+              <option value="Francisco I. Madero|75">Francisco I. Madero</option>
+              <option value="Gravera 2a Sección|20">Gravera 2a Sección</option>
+              <option value="Guayabal|65">Guayabal</option>
+              <option value="Guayacanal|60">Guayacanal</option>
+              <option value="Insurgentes Norte|65">Insurgentes Norte</option>
+              <option value="Insurgentes Sur|60">Insurgentes Sur</option>
+              <option value="Jardines de Tlalcualeya|60">Jardines de Tlalcualeya</option>
+              <option value="Jorge Sierra Gallardo|50">Jorge Sierra Gallardo</option>
+              <option value="La Aurora|60">La Aurora</option>
+              <option value="La Bomba|35">La Bomba</option>
+              <option value="La Fuente|60">La Fuente</option>
+              <option value="La Gravera|60">La Gravera</option>
+              <option value="Las Delicias|60">Las Delicias</option>
+              <option value="Las Piedritas|65">Las Piedritas</option>
+              <option value="Liberación|80">Liberación</option>
+              <option value="Los Laureles|55">Los Laureles</option>
+              <option value="Luis Echeverría Álvarez|70">Luis Echeverría Álvarez</option>
+              <option value="Mapachapa|30">Mapachapa</option>
+              <option value="Mártires de Chicago|60">Mártires de Chicago</option>
+              <option value="México|20">México</option>
+              <option value="Miguel Alemán Valdez|60">Miguel Alemán Valdez</option>
+              <option value="Miguel Hidalgo|50">Miguel Hidalgo</option>
+              <option value="Militar|60">Militar</option>
+              <option value="Misantla|65">Misantla</option>
+              <option value="Nueva Esperanza|80">Nueva Esperanza</option>
+              <option value="Nueva Mina|50">Nueva Mina</option>
+              <option value="Nueva Primero de Mayo|35">Nueva Primero de Mayo</option>
+              <option value="Nueva Tacoteno|40">Nueva Tacoteno</option>
+              <option value="Nuevo Palmar|60">Nuevo Palmar</option>
+              <option value="Oaxaqueña|55">Oaxaqueña</option>
+              <option value="Obrera|45">Obrera</option>
+              <option value="Patria Libre|65">Patria Libre</option>
+              <option value="Petrolera|30">Petrolera</option>
+              <option value="Playón Sur|60">Playón Sur</option>
+              <option value="Praderas del Jaguey|70">Praderas del Jaguey</option>
+              <option value="Predio Jardín de las Flores|70">Predio Jardín de las Flores</option>
+              <option value="Refinería Lázaro Cárdenas del Río|80">Refinería Lázaro Cárdenas del Río</option>
+              <option value="Rosalinda|45">Rosalinda</option>
+              <option value="Ruiz Cortines|50">Ruiz Cortines</option>
+              <option value="Salubridad|40">Salubridad</option>
+              <option value="San Carlos|30">San Carlos</option>
+              <option value="Santa Clara|45">Santa Clara</option>
+              <option value="Sebastián Guzmán|45">Sebastián Guzmán</option>
+              <option value="Tacoteno|50">Tacoteno</option>
+              <option value="Un Paso a la Gloria|65">Un Paso a la Gloria</option>
+              <option value="Vicente Guerrero|75">Vicente Guerrero</option>
+              <option value="Villas del Sol|65">Villas del Sol</option>
             </optgroup>
             <option value="otra|0">Otra colonia (el envío se ajusta por WhatsApp)</option>
           </select>
@@ -780,7 +860,9 @@ function setOrderType(type) {
   document.getElementById('delivery-section').classList.toggle('hidden', !isDelivery);
   document.getElementById('payment-section').classList.toggle('hidden', !isDelivery);
 
-  if (!isDelivery) {
+  if (isDelivery) {
+    document.getElementById('delivery-toast').classList.remove('hidden');
+  } else {
     paymentMethod = null;
     envioInfo = { costo: null, nombre: '', manual: false };
     document.getElementById('pay-card').classList.remove('selected');
@@ -793,6 +875,13 @@ function setOrderType(type) {
   updateSummary();
 }
 
+function closeToast(e) {
+  // Close if clicking the overlay (outside the box)
+  if (e.target === document.getElementById('delivery-toast')) {
+    document.getElementById('delivery-toast').classList.add('hidden');
+  }
+}
+
 // ── MUNICIPIO / ENVÍO ─────────────────────────────────────────────────────
 function onMunicipioChange() {
   const muni = document.getElementById('d-municipio').value;
@@ -800,27 +889,27 @@ function onMunicipioChange() {
   const select = document.getElementById('d-mina-colonia');
   const badge = document.getElementById('envio-badge');
   const manualNote = document.getElementById('envio-manual-note');
+  const manualWrap = document.getElementById('colonia-manual-wrap');
 
   // Show/hide the colonia select for both municipalities
   coloniaWrap.classList.toggle('hidden', !muni);
 
-  // Show or hide Minatitlán-specific optgroups
-  const minaGroups = ['optgrp-30','optgrp-40','optgrp-50','optgrp-55','optgrp-60'];
-  minaGroups.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = (muni === 'Minatitlán') ? '' : 'none';
-  });
+  // Show Minatitlán optgroup only for Minatitlán
+  const minaGroup = document.getElementById('optgrp-mina');
+  if (minaGroup) minaGroup.style.display = (muni === 'Minatitlán') ? '' : 'none';
 
-  // Reset colonia selector
+  // Reset
   select.value = '';
   badge.classList.remove('visible');
   badge.textContent = '';
   manualNote.classList.add('hidden');
+  manualWrap.classList.add('hidden');
 
   if (muni === 'Cosoleacaque') {
-    // Auto-select "otra" and mark as manual
     select.value = 'otra|0';
     manualNote.classList.remove('hidden');
+    manualWrap.classList.remove('hidden');
+    document.getElementById('d-colonia-manual').value = '';
     envioInfo = { costo: null, nombre: 'Cosoleacaque', manual: true };
   } else {
     envioInfo = { costo: null, nombre: '', manual: false };
@@ -1121,8 +1210,11 @@ function sendOrder() {
 
   const envioResumen = envioCost > 0 ? `\n*Subtotal:* ${fmt(subtotal)}${envioLine}` : (envioLine || '');
 
+  const today = new Date();
+  const fecha = today.toLocaleDateString('es-MX', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
   const msg =
-`*Pedido - Los Regios Grill*
+`*Pedido: ${fecha}*
 *Tipo:* ${tipoEntrega}${clienteInfo}
 ─────────────────────
 ${lines.join('\n')}
@@ -1135,5 +1227,17 @@ ${lines.join('\n')}
 // ── INIT ──────────────────────────────────────────────────────────────────
 renderAll();
 </script>
+<!-- DELIVERY TIME TOAST -->
+<div class="toast-overlay hidden" id="delivery-toast" onclick="closeToast(event)">
+  <div class="toast-box">
+    <div class="toast-icon"><i class="bi bi-clock-history"></i></div>
+    <div class="toast-title">Tiempo de entrega estimado</div>
+    <div class="toast-body">
+      Tu pedido puede tardar entre <strong>30 y 50 minutos</strong> en prepararse y llegar a tu domicilio.
+    </div>
+    <button class="toast-btn" onclick="document.getElementById('delivery-toast').classList.add('hidden')">Entendido</button>
+  </div>
+</div>
+
 </body>
 </html>
