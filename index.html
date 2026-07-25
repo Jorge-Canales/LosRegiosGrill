@@ -304,6 +304,35 @@
   .tagline {
     padding: 5px;
   }
+  /* ── MENU LOADING / ERROR ── */
+  .menu-loading {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px; padding: 60px 0; color: var(--muted); font-size: .95rem;
+  }
+  .menu-spinner {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 3px solid var(--charcoal);
+    border-top-color: var(--fire);
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .menu-error {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px; padding: 60px 20px;
+    text-align: center; color: var(--muted);
+  }
+  .menu-error i { font-size: 2.5rem; color: var(--fire); }
+  .menu-error p { font-size: .9rem; max-width: 280px; line-height: 1.5; }
+  .menu-error button {
+    margin-top: 4px; padding: 10px 24px;
+    background: var(--fire); border: none; border-radius: 8px;
+    color: white; font-family: 'Barlow', sans-serif;
+    font-size: .9rem; cursor: pointer;
+  }
+  .menu-error button:hover { opacity: .85; }
 </style>
 </head>
 <body>
@@ -320,6 +349,22 @@
 
 <main id="app">
 
+
+  <!-- LOADING STATE -->
+  <div id="menu-loading" class="menu-loading">
+    <div class="menu-spinner"></div>
+    <p>Cargando menú...</p>
+  </div>
+
+  <!-- ERROR STATE -->
+  <div id="menu-error" class="hidden menu-error">
+    <i class="bi bi-wifi-off"></i>
+    <p>No se pudo cargar el menú. Verifica tu conexión e intenta de nuevo.</p>
+    <button onclick="loadMenu()">Reintentar</button>
+  </div>
+
+  <!-- MENU CONTENT -->
+  <div id="menu-content" class="hidden">
 
   <!-- CARNE ASADA -->
   <div class="category">
@@ -364,6 +409,8 @@
     <div class="section-title">Refrescos</div>
     <div class="menu-grid" id="cat-refrescos"></div>
   </div>
+
+  </div><!-- /menu-content -->
 
   <!-- ORDER TYPE -->
   <div class="order-type-block">
@@ -519,7 +566,7 @@
               <option value="Oaxaqueña|55">Oaxaqueña</option>
               <option value="Obrera|45">Obrera</option>
               <option value="Patria Libre|65">Patria Libre</option>
-              <option value="Petrolera|40">Petrolera</option>
+              <option value="Petrolera|30">Petrolera</option>
               <option value="Playón Sur|60">Playón Sur</option>
               <option value="Praderas del Jaguey|70">Praderas del Jaguey</option>
               <option value="Predio Jardín de las Flores|70">Predio Jardín de las Flores</option>
@@ -575,15 +622,15 @@
       <!-- SPEI info -->
       <div class="spei-info hidden" id="spei-info">
         <div class="spei-row">
-          <span class="spei-label">CLABE Mercado Pago</span>
-          <span class="spei-value" id="spei-clabe">7229 6902 0674 3800 50</span>
+          <span class="spei-label">CLABE MERCADO PAGO</span>
+          <span class="spei-value" id="spei-clabe">72 2969 0171 9301 1428</span>
           <button class="spei-copy" onclick="copyClabe()" title="Copiar CUENTA">
             <i class="bi bi-copy"></i>
           </button>
         </div>
         <p class="spei-note">
           <i class="bi bi-exclamation-circle"></i>
-          Tu pedido no se preparará hasta recibir el comprobante de transferencia por WhatsApp | Cuenta a nombre de: Renata López Morales
+          Titular: Alexis Canales Garduño | Tu pedido no se preparará hasta recibir el comprobante de transferencia por WhatsApp.
         </p>
       </div>
 
@@ -612,69 +659,49 @@
 </div>
 
 <script>
-// ── ZONA DE ENVÍO (Minatitlán) ────────────────────────────────────────────
-// Costo se embebe en el value del <option> como "nombre|costo"
-// 0 = manual (otra colonia)
+// ── MENÚ (cargado dinámicamente desde Google Sheets) ──────────────────────
+const MENU_API = 'https://script.google.com/macros/s/AKfycbypG2-YVopCmzAN-M49JIrH6w2cWB7bTleP4u6pUcWvPNq2w16xHF07woAYpPnKtwkc/exec';
 
-// ── MENÚ ──────────────────────────────────────────────────────────────────
-const MENU = {
-  carne: [
-    { id:'c1', name:'½ Kg Asada',    price:250 },
-    { id:'c2', name:'1 Kg Asada',    price:450 },
-    { id:'c3', name:'½ Kg Sirloin',  price:300 },
-    { id:'c4', name:'1 Kg Sirloin',  price:550 },
-    { id:'c5', name:'½ Kg Arrachera',price:380 },
-    { id:'c6', name:'1 Kg Arrachera',price:700 },
-    { id:'c7', name:'½ Kg Picaña',   price:420 },
-    { id:'c8', name:'1 Kg Picaña',   price:800 },
-  ],
-  hamburguesasRes: [
-    { id:'h1', name:'Hamburguesa de Res', price:135, isBurgerRes:true },
-    { id:'h2', name:'Hamburguesa de Res con papas', price:150, isBurgerRes:true },
-  ],
-  hamburguesasPollo: [
-    { id:'h3', name:'Hamburguesa de Pollo', price:135, isBurgerPollo:true },
-    { id:'h4', name:'Hamburguesa de Pollo con papas', price:150, isBurgerPollo:true },
-  ],
-  tacos: [
-    { id:'t1', name:'Taco Asada',    price:50, isTaco:true },
-    { id:'t2', name:'Taco Sirloin',  price:60, isTaco:true },
-    { id:'t3', name:'Taco Arrachera',price:70, isTaco:true },
-    { id:'t4', name:'Taco Picaña',   price:80, isTaco:true },
-  ],
-  quesadillas: [
-    { id:'q1', baseName:'Asada',    price:140, isQV:true },
-    { id:'q2', baseName:'Sirloin',  price:155, isQV:true },
-    { id:'q3', baseName:'Arrachera',price:170, isQV:true },
-    { id:'q4', baseName:'Picaña',   price:180, isQV:true },
-  ],
-  complementos: [
-    { id:'x1', name:'Salchicha asada', price:25 },
-    { id:'x2', name:'Chorizo argentino', price:25 },
-    { id:'x3', name:'Chorizo español', price:30 },
-    { id:'x4', name:'Cebolla asada', price:30 },
-    { id:'x5', name:'Frijoles charros', price:50 },
-    { id:'x6', name:'Guacamole', price:50 },
-    { id:'x7', name:'Frijoles cargados (queso+carne)', price:80 },
-    { id:'x8', name:'Cuarto de chistorra', price:100 },
-    { id:'x9', name:'Guacamole belly', price:120 },
-    { id:'x10', name:'Papa asada', price:100, isPapa:true },
-  ],
-  aguas: [
-    { id:'a1', name:'Limonada', price:40 },
-    { id:'a2', name:'Limón con pepino', price:40 },
-    { id:'a3', name:'Limón con chía', price:40 },
-    { id:'a4', name:'Melón', price:40 },
-    { id:'a5', name:'Jamaica', price:40 },
-  ],
-  refrescos: [
-    { id:'r1', name:'Coca Cola', price:35 },
-    { id:'r2', name:'Fresca', price:35 },
-    { id:'r3', name:'Sidral Mundet', price:35 },
-    { id:'r4', name:'Fanta Naranja', price:35 },
-    { id:'r5', name:'Fanta Fresa', price:35 },
-  ],
-};
+// Categorías válidas en el orden en que deben aparecer
+const CAT_ORDER = ['carne','hamburguesasRes','hamburguesasPollo','tacos','quesadillas','complementos','aguas','refrescos'];
+
+let MENU = {};
+
+async function loadMenu() {
+  showMenuLoading(true);
+  try {
+    const res = await fetch(MENU_API);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const items = await res.json();
+
+    // Agrupar por categoría manteniendo el orden
+    const grouped = {};
+    CAT_ORDER.forEach(cat => { grouped[cat] = []; });
+
+    items.forEach(item => {
+      const cat = item.categoria;
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(item);
+    });
+
+    MENU = grouped;
+    renderAll();
+  } catch (err) {
+    console.error('Error cargando menú:', err);
+    showMenuError();
+  } finally {
+    showMenuLoading(false);
+  }
+}
+
+function showMenuLoading(on) {
+  document.getElementById('menu-loading').classList.toggle('hidden', !on);
+  document.getElementById('menu-content').classList.toggle('hidden', on);
+}
+
+function showMenuError() {
+  document.getElementById('menu-error').classList.remove('hidden');
+}
 
 const PAPA_TOPPINGS = [
   { key:'ninguno', label:'Sin topping', extra:0 },
@@ -797,14 +824,21 @@ function renderCategory(containerId, items) {
 }
 
 function renderAll() {
-  renderCategory('cat-carne', MENU.carne);
-  renderCategory('cat-hamburguesas-res', MENU.hamburguesasRes);
-  renderCategory('cat-hamburguesas-pollo', MENU.hamburguesasPollo);
-  renderCategory('cat-tacos', MENU.tacos);
-  renderCategory('cat-quesadillas', MENU.quesadillas);
-  renderCategory('cat-complementos', MENU.complementos);
-  renderCategory('cat-aguas', MENU.aguas);
-  renderCategory('cat-refrescos', MENU.refrescos);
+  const catToGrid = {
+    carne:            'cat-carne',
+    hamburguesasRes:  'cat-hamburguesas-res',
+    hamburguesasPollo:'cat-hamburguesas-pollo',
+    tacos:            'cat-tacos',
+    quesadillas:      'cat-quesadillas',
+    complementos:     'cat-complementos',
+    aguas:            'cat-aguas',
+    refrescos:        'cat-refrescos',
+  };
+  CAT_ORDER.forEach(cat => {
+    const gridId = catToGrid[cat];
+    const items  = MENU[cat] || [];
+    if (gridId) renderCategory(gridId, items);
+  });
   updateSummary();
 }
 
@@ -1225,7 +1259,7 @@ ${lines.join('\n')}
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
-renderAll();
+loadMenu();
 </script>
 <!-- DELIVERY TIME TOAST -->
 <div class="toast-overlay hidden" id="delivery-toast" onclick="closeToast(event)">
