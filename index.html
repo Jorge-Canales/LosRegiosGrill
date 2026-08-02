@@ -301,38 +301,90 @@
   @keyframes slideUp { from { transform:translateY(16px); opacity:0 } to { transform:translateY(0); opacity:1 } }
 
   html { scroll-behavior: smooth; }
-  .tagline {
-    padding: 5px;
-  }
+  .tagline { padding: 5px; }
+
   /* ── MENU LOADING / ERROR ── */
   .menu-loading {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 16px; padding: 60px 0; color: var(--muted); font-size: .95rem;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 16px; padding: 60px 0;
+    color: var(--muted); font-size: .95rem;
   }
   .menu-spinner {
     width: 40px; height: 40px; border-radius: 50%;
-    border: 3px solid var(--charcoal);
-    border-top-color: var(--fire);
+    border: 3px solid var(--charcoal); border-top-color: var(--fire);
     animation: spin .8s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .menu-error {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px; padding: 60px 20px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 12px; padding: 60px 20px;
     text-align: center; color: var(--muted);
   }
   .menu-error i { font-size: 2.5rem; color: var(--fire); }
   .menu-error p { font-size: .9rem; max-width: 280px; line-height: 1.5; }
   .menu-error button {
-    margin-top: 4px; padding: 10px 24px;
-    background: var(--fire); border: none; border-radius: 8px;
-    color: white; font-family: 'Barlow', sans-serif;
-    font-size: .9rem; cursor: pointer;
+    margin-top: 4px; padding: 10px 24px; background: var(--fire);
+    border: none; border-radius: 8px; color: white;
+    font-family: 'Barlow', sans-serif; font-size: .9rem; cursor: pointer;
   }
   .menu-error button:hover { opacity: .85; }
+
+  /* ── PROMO CARD ── */
+  .promo-title-label { display: flex; align-items: center; gap: 8px; }
+  .promo-title-label i { color: var(--gold); }
+  .item-card.promo-card {
+    border-color: rgba(245,166,35,0.35);
+    background: linear-gradient(135deg, #2d2520 0%, #2d200a 100%);
+  }
+  .item-card.promo-card.has-quantity {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #2d2520 0%, #3d2c08 100%);
+  }
+  .promo-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(245,166,35,0.15); border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 4px; padding: 2px 8px; margin-bottom: 4px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: .72rem;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+  }
+  .promo-includes {
+    list-style: none; margin-top: 8px; display: flex; flex-direction: column;
+    gap: 3px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px;
+  }
+  .promo-includes li {
+    font-size: .78rem; color: var(--muted);
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .promo-includes li::before {
+    content: '·'; color: var(--gold); font-size: 1rem; line-height: 1; flex-shrink: 0;
+  }
+  #cat-promo { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+
+  /* ── CATEGORY NAV TABS ── */
+  .cat-nav {
+    position: sticky; top: 0; z-index: 90;
+    background: rgba(26,20,16,0.97);
+    border-bottom: 1px solid rgba(232,67,10,0.25);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .cat-nav-inner {
+    display: flex; overflow-x: auto; max-width: 900px;
+    margin: 0 auto; padding: 0 8px; scrollbar-width: none;
+  }
+  .cat-nav-inner::-webkit-scrollbar { display: none; }
+  .cat-tab {
+    flex-shrink: 0; background: transparent; border: none;
+    border-bottom: 2px solid transparent; color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif; font-size: .88rem;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 14px 14px 12px; cursor: pointer; white-space: nowrap;
+    transition: color .2s, border-color .2s, text-shadow .2s;
+  }
+  .cat-tab:hover { color: var(--sand); }
+  .cat-tab.active {
+    color: var(--fire); border-bottom-color: var(--fire);
+    text-shadow: 0 0 8px rgba(232,67,10,0.7), 0 0 20px rgba(232,67,10,0.4);
+  }
 </style>
 </head>
 <body>
@@ -347,8 +399,21 @@
   </p>
 </header>
 
-<main id="app">
+<!-- NAV TABS -->
+<nav class="cat-nav" id="cat-nav">
+  <div class="cat-nav-inner">
+    <button class="cat-tab active" data-target="sec-promo">Promociones</button>
+    <button class="cat-tab" data-target="sec-carne">Carne Asada</button>
+    <button class="cat-tab" data-target="sec-hamburguesas">Hamburguesas</button>
+    <button class="cat-tab" data-target="sec-tacos">Tacos</button>
+    <button class="cat-tab" data-target="sec-quesadillas">Quesadillas</button>
+    <button class="cat-tab" data-target="sec-complementos">Complementos</button>
+    <button class="cat-tab" data-target="sec-aguas">Aguas Frescas</button>
+    <button class="cat-tab" data-target="sec-refrescos">Refrescos</button>
+  </div>
+</nav>
 
+<main id="app">
 
   <!-- LOADING STATE -->
   <div id="menu-loading" class="menu-loading">
@@ -366,46 +431,54 @@
   <!-- MENU CONTENT -->
   <div id="menu-content" class="hidden">
 
+  <!-- PROMO -->
+  <div class="category" id="sec-promo">
+    <div class="section-title promo-title-label">
+      <i class="bi bi-fire"></i> Promociones
+    </div>
+    <div class="menu-grid" id="cat-promo"></div>
+  </div>
+
   <!-- CARNE ASADA -->
-  <div class="category">
+  <div class="category" id="sec-carne">
     <div class="section-title">Carne Asada Premium</div>
     <div class="section-note">Incluye: cebolla asada, tortillas, salsas y limones</div>
     <div class="menu-grid" id="cat-carne"></div>
   </div>
 
   <!-- HAMBURGUESAS -->
-  <div class="category">
+  <div class="category" id="sec-hamburguesas">
     <div class="section-title">Hamburguesas</div>
     <div class="menu-grid" id="cat-hamburguesas-res" style="margin-bottom:16px"></div>
     <div class="menu-grid" id="cat-hamburguesas-pollo"></div>
   </div>
 
   <!-- TACOS -->
-  <div class="category">
+  <div class="category" id="sec-tacos">
     <div class="section-title">Tacos</div>
     <div class="menu-grid" id="cat-tacos"></div>
   </div>
 
   <!-- QUESADILLAS -->
-  <div class="category">
+  <div class="category" id="sec-quesadillas">
     <div class="section-title">Quesadillas / Volcanes</div>
     <div class="menu-grid" id="cat-quesadillas"></div>
   </div>
 
   <!-- COMPLEMENTOS -->
-  <div class="category">
+  <div class="category" id="sec-complementos">
     <div class="section-title">Complementos</div>
     <div class="menu-grid" id="cat-complementos"></div>
   </div>
 
   <!-- AGUAS -->
-  <div class="category">
+  <div class="category" id="sec-aguas">
     <div class="section-title">Aguas Frescas</div>
     <div class="menu-grid" id="cat-aguas"></div>
   </div>
 
   <!-- REFRESCOS -->
-  <div class="category">
+  <div class="category" id="sec-refrescos">
     <div class="section-title">Refrescos</div>
     <div class="menu-grid" id="cat-refrescos"></div>
   </div>
@@ -566,7 +639,7 @@
               <option value="Oaxaqueña|55">Oaxaqueña</option>
               <option value="Obrera|45">Obrera</option>
               <option value="Patria Libre|65">Patria Libre</option>
-              <option value="Petrolera|30">Petrolera</option>
+              <option value="Petrolera|40">Petrolera</option>
               <option value="Playón Sur|60">Playón Sur</option>
               <option value="Praderas del Jaguey|70">Praderas del Jaguey</option>
               <option value="Predio Jardín de las Flores|70">Predio Jardín de las Flores</option>
@@ -622,15 +695,15 @@
       <!-- SPEI info -->
       <div class="spei-info hidden" id="spei-info">
         <div class="spei-row">
-          <span class="spei-label">CLABE MERCADO PAGO</span>
-          <span class="spei-value" id="spei-clabe">72 2969 0171 9301 1428</span>
+          <span class="spei-label">CLABE Mercado Pago</span>
+          <span class="spei-value" id="spei-clabe">7229 6902 0674 3800 50</span>
           <button class="spei-copy" onclick="copyClabe()" title="Copiar CUENTA">
             <i class="bi bi-copy"></i>
           </button>
         </div>
         <p class="spei-note">
           <i class="bi bi-exclamation-circle"></i>
-          Titular: Alexis Canales Garduño | Tu pedido no se preparará hasta recibir el comprobante de transferencia por WhatsApp.
+          Tu pedido no se preparará hasta recibir el comprobante de transferencia por WhatsApp | Cuenta a nombre de: Renata López Morales
         </p>
       </div>
 
@@ -659,12 +732,9 @@
 </div>
 
 <script>
-// ── MENÚ (cargado dinámicamente desde Google Sheets) ──────────────────────
+// ── MENÚ (dinámico desde Google Sheets) ───────────────────────────────────
 const MENU_API = 'https://script.google.com/macros/s/AKfycbypG2-YVopCmzAN-M49JIrH6w2cWB7bTleP4u6pUcWvPNq2w16xHF07woAYpPnKtwkc/exec';
-
-// Categorías válidas en el orden en que deben aparecer
-const CAT_ORDER = ['carne','hamburguesasRes','hamburguesasPollo','tacos','quesadillas','complementos','aguas','refrescos'];
-
+const CAT_ORDER = ['promo','carne','hamburguesasRes','hamburguesasPollo','tacos','quesadillas','complementos','aguas','refrescos'];
 let MENU = {};
 
 async function loadMenu() {
@@ -673,17 +743,14 @@ async function loadMenu() {
     const res = await fetch(MENU_API);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const items = await res.json();
-
-    // Agrupar por categoría manteniendo el orden
     const grouped = {};
     CAT_ORDER.forEach(cat => { grouped[cat] = []; });
-
     items.forEach(item => {
       const cat = item.categoria;
       if (!grouped[cat]) grouped[cat] = [];
+      if (cat === 'promo') item.isPromo = true;
       grouped[cat].push(item);
     });
-
     MENU = grouped;
     renderAll();
   } catch (err) {
@@ -802,7 +869,8 @@ function buildCard(item) {
   }
 
   return `
-    <div class="item-card ${hasQty ? 'has-quantity' : ''}" id="card-${item.id}">
+    <div class="item-card ${item.isPromo ? 'promo-card' : ''} ${hasQty ? 'has-quantity' : ''}" id="card-${item.id}">
+      ${item.isPromo ? '<span class="promo-badge"><i class="bi bi-star-fill"></i> Promo</span>' : ''}
       <div class="item-name">${displayName}</div>
       ${item.isTaco ? '<div class="item-note">+$15 queso opcional</div>' : ''}
       ${item.isQV ? '<div class="item-note">3 piezas</div>' : ''}
@@ -815,6 +883,10 @@ function buildCard(item) {
           <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
         </div>
       </div>
+      ${item.isPromo && item.includes ? `
+      <ul class="promo-includes">
+        ${item.includes.split('|').map(i => `<li>${i.trim()}</li>`).join('')}
+      </ul>` : ''}
       ${extras}
     </div>`;
 }
@@ -825,6 +897,7 @@ function renderCategory(containerId, items) {
 
 function renderAll() {
   const catToGrid = {
+    promo:            'cat-promo',
     carne:            'cat-carne',
     hamburguesasRes:  'cat-hamburguesas-res',
     hamburguesasPollo:'cat-hamburguesas-pollo',
@@ -834,10 +907,8 @@ function renderAll() {
     aguas:            'cat-aguas',
     refrescos:        'cat-refrescos',
   };
-  CAT_ORDER.forEach(cat => {
-    const gridId = catToGrid[cat];
-    const items  = MENU[cat] || [];
-    if (gridId) renderCategory(gridId, items);
+  Object.entries(catToGrid).forEach(([cat, gridId]) => {
+    renderCategory(gridId, MENU[cat] || []);
   });
   updateSummary();
 }
@@ -1257,6 +1328,47 @@ ${lines.join('\n')}
 
   window.open(`https://wa.me/528123370028?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
+// ── NAV TABS + SCROLL SPY ─────────────────────────────────────────────────
+(function () {
+  const SECTIONS = ['sec-promo','sec-carne','sec-hamburguesas','sec-tacos',
+                    'sec-quesadillas','sec-complementos','sec-aguas','sec-refrescos'];
+
+  function setActiveTab(sectionId) {
+    document.querySelectorAll('.cat-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.target === sectionId);
+    });
+    const active = document.querySelector(`.cat-tab[data-target="${sectionId}"]`);
+    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  let spyPaused = false, spyTimer = null;
+
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (!target) return;
+      const navH = document.getElementById('cat-nav').offsetHeight;
+      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+      spyPaused = true;
+      clearTimeout(spyTimer);
+      spyTimer = setTimeout(() => { spyPaused = false; }, 800);
+      setActiveTab(tab.dataset.target);
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (spyPaused) return;
+    const navH = (document.getElementById('cat-nav')?.offsetHeight || 0) + 16;
+    let current = SECTIONS[0];
+    for (const id of SECTIONS) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= navH) current = id;
+    }
+    setActiveTab(current);
+  }, { passive: true });
+})();
 
 // ── INIT ──────────────────────────────────────────────────────────────────
 loadMenu();
