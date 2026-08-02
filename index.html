@@ -96,7 +96,7 @@
   .category { margin-bottom: 48px; }
 
   /* ── MENU GRID ── */
-  .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .item-card {
     background: var(--ash); border: 1px solid rgba(255,255,255,0.06);
     border-radius: 12px; padding: 18px 16px;
@@ -385,6 +385,13 @@
     color: var(--fire); border-bottom-color: var(--fire);
     text-shadow: 0 0 8px rgba(232,67,10,0.7), 0 0 20px rgba(232,67,10,0.4);
   }
+
+  #cat-hamburguesas-res, #cat-hamburguesas-pollo, #cat-double-crunch {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
 </style>
 </head>
 <body>
@@ -450,7 +457,8 @@
   <div class="category" id="sec-hamburguesas">
     <div class="section-title">Hamburguesas</div>
     <div class="menu-grid" id="cat-hamburguesas-res" style="margin-bottom:16px"></div>
-    <div class="menu-grid" id="cat-hamburguesas-pollo"></div>
+    <div class="menu-grid" id="cat-hamburguesas-pollo" style="margin-bottom:16px"></div>
+    <div class="menu-grid" id="cat-double-crunch"></div>
   </div>
 
   <!-- TACOS -->
@@ -734,7 +742,7 @@
 <script>
 // ── MENÚ (dinámico desde Google Sheets) ───────────────────────────────────
 const MENU_API = 'https://script.google.com/macros/s/AKfycbypG2-YVopCmzAN-M49JIrH6w2cWB7bTleP4u6pUcWvPNq2w16xHF07woAYpPnKtwkc/exec';
-const CAT_ORDER = ['promo','carne','hamburguesasRes','hamburguesasPollo','tacos','quesadillas','complementos','aguas','refrescos'];
+const CAT_ORDER = ['promo','carne','hamburguesasRes','hamburguesasPollo','doubleCrunch','tacos','quesadillas','complementos','aguas','refrescos'];
 let MENU = {};
 
 async function loadMenu() {
@@ -883,7 +891,7 @@ function buildCard(item) {
           <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
         </div>
       </div>
-      ${item.isPromo && item.includes ? `
+      ${item.includes ? `
       <ul class="promo-includes">
         ${item.includes.split('|').map(i => `<li>${i.trim()}</li>`).join('')}
       </ul>` : ''}
@@ -901,6 +909,7 @@ function renderAll() {
     carne:            'cat-carne',
     hamburguesasRes:  'cat-hamburguesas-res',
     hamburguesasPollo:'cat-hamburguesas-pollo',
+    doubleCrunch:     'cat-double-crunch',
     tacos:            'cat-tacos',
     quesadillas:      'cat-quesadillas',
     complementos:     'cat-complementos',
